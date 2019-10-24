@@ -1,0 +1,76 @@
+56dd2dc94b61cd6d1a8ccfc9bb8678ee1604be40
+
+git remote add origin https://github.com/mayurupadhyay/pal-tracker-distributed.git
+
+git push -u origin master --tags
+
+
+curl -i localhost:8083/accounts?ownerId=1
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "Pete"}'
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "Pete"}'
+
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Basket Weaving\", \"accountId\": ${ACCOUNT_ID}}
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Basket Weaving\", \"accountId\": 1}
+
+curl -i localhost:8083/projects?accountId=1
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations -d"{\"projectId\": 1, \"userId\": 1, \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+curl -i localhost:8081/allocations?projectId=1
+
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8082/stories -d"{\"projectId\": 1, \"name\": \"Find some reeds\"}"
+curl -i localhost:8082/stories?projectId=1
+
+
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8084/time-entries/ -d"{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+curl -i localhost:8084/time-entries?userId=1
+
+allocations-pal-{UNIQUE_IDENTIFIER}.apps.chicken.pal.pivotal.io
+allocations-paltrackerdistributed-mu_sk.apps.chicken.pal.pivotal.io
+
+
+## check the route
+
+cf check-route registration-pal-mu-sk.apps.chicken.pal.pivotal.io cfapps.io
+
+
+cfapps.io
+
+Example-
+cf check-route pal-tracker-ben-smith cfapps.io
+
+
+cf create-service p.mysql db-small tracker-registration-database
+
+
+## ClearDB instance creation -
+pal-1@pal1-OptiPlex-7050:~/workspace/pal-tracker-distributed$ cf cs cleardb spark tracker-timesheets-database1
+
+
+
+
+./gradlew cloudNativeDeveloperDistributedSystemDeployment \
+    -PregistrationServerUrl=https://${REGISTRATION_APP_URL} \
+    -PbacklogServerUrl=https://${BACKLOG_APP_URL} \
+    -PallocationsServerUrl=https://${ALLOCATIONS_APP_URL} \
+    -PtimesheetsServerUrl=https://${TIMESHEETS_APP_URL}
+
+
+
+./gradlew cloudNativeDeveloperDistributedSystemDeployment \
+    -PregistrationServerUrl=hhttps://registration-pal-mu-sk.cfapps.io/ \
+    -PbacklogServerUrl=https://backlog-pal-mu-sk.cfapps.io/ \
+    -PallocationsServerUrl=https://allocations-pal-mu-sk.cfapps.io/
+    -PtimesheetsServerUrl=https://timesheets-pal-mu-sk.cfapps.io/
+
+./gradlew cloudNativeDeveloperDistributedSystemDeployment -PregistrationServerUrl=https://registration-pal-mu-sk.cfapps.io/ -PbacklogServerUrl=https://backlog-pal-mu-sk.cfapps.io/ -PallocationsServerUrl=https://allocations-pal-mu-sk.cfapps.io/ -PtimesheetsServerUrl=https://timesheets-pal-mu-sk.cfapps.io/
+
+https://docs.pivotal.io/spring-cloud-services/2-0/common/client-dependencies.html#including-spring-cloud-services-dependencies
+
+
+
